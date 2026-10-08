@@ -235,6 +235,19 @@
     .policy-short { padding: 18px; }
   }
 
+
+  /* ---------- on phones and tablets: Mirror is installed on a laptop ---------- */
+  .phone-only { display: none; }
+  html.on-phone .phone-only { display: block; }
+  .plate .phone-note { font: 500 0.78rem/1.45 var(--sans); color: var(--ink); background: var(--tint-ochre); padding: 9px 11px; }
+  .phone-box { width: 100%; max-width: 560px; background: var(--paper); color: var(--ink); padding: 20px 22px; border: 1px solid var(--paper); box-shadow: 5px 5px 0 var(--ink); }
+  .phone-box b { display: block; font: italic 500 1.35rem/1.2 var(--serif); margin-bottom: 6px; }
+  .phone-box p { color: var(--ink-2); font-size: 0.95rem; line-height: 1.5; }
+  .phone-actions { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 14px; }
+  .phone-actions a, .phone-actions button { font: 500 0.92rem/1 var(--sans); padding: 12px 16px; border: 1px solid var(--ink); background: var(--paper); color: var(--ink); text-decoration: none; cursor: pointer; }
+  .phone-actions .primary { background: var(--ink); color: var(--paper); }
+  .phone-box.flash { animation: phoneflash 0.9s ease; }
+  @keyframes phoneflash { 30% { transform: translate(-3px, -3px); box-shadow: 8px 8px 0 var(--ochre); } }
   @media (max-width: 820px) {
     .topbar { padding-inline: 12px; }
     .chapter { font-size: 0.62rem; letter-spacing: 0.12em; }
@@ -275,6 +288,7 @@
         <p class="eyebrow">Ex libris</p>
         <h1>Mirror</h1>
                 <p class="what">A free browser extension. Every new tab shows your reflection, your goals and your deadlines. One click connects you with students from different universities: events, jobs, discussion rooms and a lot more to explore.</p>
+        <p class="phone-only phone-note">On a phone or tablet? Mirror works in Chrome, Brave or Edge on your laptop. Open vvillol.com there.</p>
         <p class="cue mono">Scroll to step through the books <span class="cue-arrow" aria-hidden="true">↓</span></p>
       </div>
 
@@ -435,6 +449,14 @@
       <!-- The button points at STORE_URL in the script below. Paste the Chrome Web Store link there. -->
       <a class="btn-get" id="getMirror" href="#get">Get Mirror <span class="arrow" aria-hidden="true">→</span></a>
       <p class="mono" id="getNote" aria-live="polite">Free for Chrome · Made in Berlin</p>
+      <div class="phone-only phone-box" id="phoneBox">
+        <b>Mirror lives on your laptop.</b>
+        <p>Browser extensions don't work on phones or tablets. Open <strong>vvillol.com</strong> in Chrome, Brave or Edge on your laptop and add Mirror there. It takes 20 seconds.</p>
+        <div class="phone-actions">
+          <a class="primary" id="mailLink" href="mailto:?subject=Mirror%20for%20my%20laptop&amp;body=Open%20this%20on%20your%20laptop%3A%20https%3A%2F%2Fvvillol.com">Email me the link</a>
+          <button type="button" id="copyLink">Copy link</button>
+        </div>
+      </div>
     </div>
   </section>
 
@@ -588,7 +610,21 @@
 
   // ---------- Get Mirror ----------
   const getBtn = $("#getMirror"), getNote = $("#getNote");
-  if (STORE_URL) { getBtn.href = STORE_URL; getBtn.target = "_blank"; getBtn.rel = "noopener"; }
+  // Phones and tablets can't install extensions: point them to their laptop instead.
+  const onPhone = matchMedia("(hover: none) and (pointer: coarse)").matches || /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+  if (onPhone) document.documentElement.classList.add("on-phone");
+  const phoneBox = $("#phoneBox");
+  $("#copyLink").addEventListener("click", () => {
+    const btn = $("#copyLink"), done = () => { btn.textContent = "Link copied"; setTimeout(() => { btn.textContent = "Copy link"; }, 1800); };
+    try { navigator.clipboard.writeText("https://vvillol.com").then(done, () => { btn.textContent = "vvillol.com"; }); } catch (_) { btn.textContent = "vvillol.com"; }
+  });
+  if (onPhone) {
+    getBtn.addEventListener("click", (e) => {
+      e.preventDefault();
+      phoneBox.scrollIntoView({ block: "center", behavior: reduce ? "auto" : "smooth" });
+      phoneBox.classList.remove("flash"); void phoneBox.offsetWidth; phoneBox.classList.add("flash");
+    });
+  } else if (STORE_URL) { getBtn.href = STORE_URL; getBtn.target = "_blank"; getBtn.rel = "noopener"; }
   else getBtn.addEventListener("click", (e) => { e.preventDefault(); getNote.textContent = "Almost ready. The Chrome Web Store link goes live soon."; });
 
   // Where the hole sits in the book photo (fractions of the square image).
