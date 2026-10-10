@@ -481,7 +481,7 @@
 
   <footer class="colophon">
     <p><b>Colophon.</b> Set in Newsreader, Inter and IBM Plex Mono. Colours are taken from the photographs: paper, a red dress, brass, a bottle-green hardcover and blue-grey pages. The student cards are examples.</p>
-    <p class="links"><a href="#privacy">Privacy policy</a><span>Mirror by vvillol · Berlin</span></p>
+    <p class="links"><a href="#privacy">Privacy policy</a><a href="#impressum">Impressum</a><span>Mirror by vvillol · Berlin</span></p>
   </footer>
 </main>
 
@@ -610,7 +610,85 @@
 
     <footer class="policy-foot">
       <a class="policy-back" href="#top">← Back to Mirror</a>
-      <p class="mono">Mirror by vvillol · Berlin</p>
+      <p class="mono"><a href="#impressum">Impressum</a> · Mirror by vvillol · Berlin</p>
+    </footer>
+  </div>
+</article>
+
+<!-- Appendix · Impressum. Its own page: open this site with #impressum at the end of the address. -->
+<article class="policy" id="impressum" hidden aria-labelledby="impressumTitle" lang="de">
+  <div class="policy-inner">
+    <a class="policy-back" href="#top">← Zurück zu Mirror</a>
+
+    <header class="policy-head">
+      <p class="eyebrow">Anhang · Impressum</p>
+      <h1 id="impressumTitle">Impressum</h1>
+      <p class="mono">Für vvillol.com und die Browser-Erweiterung „Mirror — calm new tab for students“</p>
+    </header>
+
+    <section class="policy-sec">
+      <span class="num">1</span>
+      <h2>Angaben gemäß § 5 DDG</h2>
+      <p>Iona Dzidzishvili<br>vvillol · Mirror<br>Innsbrucker Platz 4<br>10827 Berlin<br>Deutschland</p>
+    </section>
+
+    <section class="policy-sec">
+      <span class="num">2</span>
+      <h2>Kontakt</h2>
+      <dl class="policy-dl">
+        <dt>E-Mail</dt><dd><a class="email" href="mailto:hello@vvillol.com">hello@vvillol.com</a></dd>
+        <dt>Telefon</dt><dd><a href="tel:+491782045474">+49 178 2045474</a></dd>
+        <dt>Instagram</dt><dd><a href="https://www.instagram.com/mirror.vvillol/" rel="noopener">@mirror.vvillol</a></dd>
+      </dl>
+    </section>
+
+    <section class="policy-sec">
+      <span class="num">3</span>
+      <h2>Verantwortlich für den Inhalt nach § 18 Abs. 2 MStV</h2>
+      <p>Iona Dzidzishvili, Anschrift wie oben.</p>
+    </section>
+
+    <section class="policy-sec">
+      <span class="num">4</span>
+      <h2>Verbraucherstreitbeilegung</h2>
+      <p>Wir sind nicht bereit und nicht verpflichtet, an Streitbeilegungsverfahren vor einer Verbraucherschlichtungsstelle teilzunehmen.</p>
+    </section>
+
+    <section class="policy-sec">
+      <span class="num">5</span>
+      <h2>Haftung für Inhalte</h2>
+      <p>Wir erstellen die Inhalte dieser Website und von Mirror mit Sorgfalt, übernehmen aber keine Gewähr für ihre Richtigkeit, Vollständigkeit und Aktualität. Als Diensteanbieter sind wir für eigene Inhalte nach den allgemeinen Gesetzen verantwortlich.</p>
+      <p>In „Together“ veröffentlichen Studierende eigene Beiträge, Events, Stellen- und Wohnungsangebote. Für diese fremden Inhalte sind wir nicht verpflichtet, sie ständig zu überwachen. Sobald wir von einer Rechtsverletzung erfahren, entfernen wir den Inhalt umgehend. Bitte melde solche Inhalte an <span class="email">hello@vvillol.com</span>.</p>
+      <p>Stellenangebote und Events im offiziellen Feed verlinken auf die Originalseiten der Unternehmen und Hochschulen. Für die Angaben dort sind ausschließlich deren Anbieter verantwortlich.</p>
+    </section>
+
+    <section class="policy-sec">
+      <span class="num">6</span>
+      <h2>Haftung für Links</h2>
+      <p>Diese Website und Mirror enthalten Links zu externen Websites Dritter, auf deren Inhalte wir keinen Einfluss haben. Für diese Inhalte ist stets der jeweilige Anbieter verantwortlich. Bei Bekanntwerden von Rechtsverletzungen entfernen wir solche Links umgehend.</p>
+    </section>
+
+    <section class="policy-sec">
+      <span class="num">7</span>
+      <h2>Urheberrecht</h2>
+      <p>Texte, Gestaltung, Logo und Software von Mirror und vvillol sind urheberrechtlich geschützt. Eine Vervielfältigung oder Verwendung außerhalb der Grenzen des Urheberrechts bedarf unserer vorherigen Zustimmung.</p>
+    </section>
+
+    <section class="policy-sec">
+      <span class="num">8</span>
+      <h2>Datenschutz</h2>
+      <p>Wie Mirror mit deinen Daten umgeht, steht in unserer <a href="#privacy">Datenschutzerklärung (Privacy policy)</a>.</p>
+    </section>
+
+    <section class="policy-sec" lang="en">
+      <span class="num">EN</span>
+      <h2>Legal notice in English</h2>
+      <p>Mirror and vvillol.com are run by Iona Dzidzishvili, Innsbrucker Platz 4, 10827 Berlin, Germany. Contact: <span class="email">hello@vvillol.com</span>, +49 178 2045474. Posts in Together are written by students; if you see something illegal or abusive, write to us and we will remove it promptly. The German version above is the legally binding one.</p>
+    </section>
+
+    <footer class="policy-foot">
+      <a class="policy-back" href="#top">← Zurück zu Mirror</a>
+      <p class="mono"><a href="#privacy">Privacy policy</a> · Mirror by vvillol · Berlin</p>
     </footer>
   </div>
 </article>
@@ -874,21 +952,24 @@
     ptr.sx = lerp(ptr.sx, ptr.x, 0.18); ptr.sy = lerp(ptr.sy, ptr.y, 0.18);
     if (renderRoom(rr, wr) && (Math.abs(ptr.sx - ptr.x) > 0.002 || Math.abs(ptr.sy - ptr.y) > 0.002)) request();
     setStyle(ribbon, "transform", `scaleX(${clamp(sy / Math.max(1, docH), 0, 1).toFixed(4)})`);
-    const ch = policyOpen ? "Appendix · Privacy" : chapterFor(p, rr, pr, cr);
+    const ch = policyOpen ? policyLabel : chapterFor(p, rr, pr, cr);
     if (ch !== lastChapter) { chapterEl.textContent = ch; lastChapter = ch; }
   }
 
-  // ---------- the privacy policy is its own page, at #privacy ----------
-  const policyEl = $("#privacy");
-  let policyOpen = false;
+  // ---------- appendix pages: the privacy policy (#privacy) and the Impressum (#impressum) ----------
+  const PAGES = {
+    "#privacy":   { el: $("#privacy"),   title: "Privacy policy · Mirror", label: "Appendix · Privacy" },
+    "#impressum": { el: $("#impressum"), title: "Impressum · Mirror",      label: "Anhang · Impressum" }
+  };
+  let policyOpen = false, policyKey = "", policyLabel = "";
   function route(first) {
-    const want = location.hash === "#privacy";
-    if (want === policyOpen && !first) return;
-    policyOpen = want;
-    policyEl.hidden = !want;
-    document.body.classList.toggle("policy-open", want);
-    document.title = want ? "Privacy policy · Mirror" : "Inside the Mirror";
-    if (want) { chapterEl.textContent = "Appendix · Privacy"; lastChapter = "Appendix · Privacy"; scrollTo(0, 0); }
+    const key = PAGES[location.hash] ? location.hash : "";
+    if (key === policyKey && !first) return;
+    policyKey = key; policyOpen = !!key;
+    for (const k in PAGES) PAGES[k].el.hidden = k !== key;
+    document.body.classList.toggle("policy-open", policyOpen);
+    document.title = policyOpen ? PAGES[key].title : "Inside the Mirror";
+    if (policyOpen) { policyLabel = PAGES[key].label; chapterEl.textContent = policyLabel; lastChapter = policyLabel; scrollTo(0, 0); }
     else {
       lastChapter = ""; dirty = true; lastStageKey = "";
       const t = location.hash && location.hash.length > 1 ? document.getElementById(location.hash.slice(1)) : null;
